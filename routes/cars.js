@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Car from "../models/car.js";
+import CarService from "../services/car.js";
 const router = Router();
 
 router.get("/", async (req, res) => {
@@ -11,23 +12,20 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
-  const car = new Car({
-    brand: req.body.brand,
-    model: req.body.model,
-    loadCapacity: req.body.loadCapacity,
-  });
+router.get("/:id", async (req, res) => {});
+
+router.post("/", async (req, res) => {
   try {
-    const newCar = await car.save();
+    const { brand, model, loadCapacity } = req.body;
+    const newCar = await CarService.create(brand, model, loadCapacity);
     res.status(201).json(newCar);
   } catch (err) {
+    console.log(err);
     res.status(400).json({ message: err.message });
   }
 });
 
-router.post("/", (req, res) => {});
-
-router.patch("/:id", (req, res) => {});
+router.put("/:id", async (req, res) => {});
 
 router.delete("/:id", (req, res) => {});
 

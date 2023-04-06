@@ -1,1 +1,11 @@
 GEt http://localhost:3000/cars
+
+### create car
+POST http://localhost:3000/cars
+Content-Type: application/json
+
+{
+  "brand": "Audi", 
+  "model": "A7", 
+  "loadCapacity": "500"
+}
