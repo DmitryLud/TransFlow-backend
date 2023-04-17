@@ -1,32 +1,12 @@
 import { Router } from "express";
-import Car from "../models/car.js";
-import CarService from "../services/car.js";
+import CarController from "../controllers/carController.js";
+
 const router = Router();
 
-router.get("/", async (req, res) => {
-  try {
-    const cars = await Car.find();
-    res.json(cars);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-router.get("/:id", async (req, res) => {});
-
-router.post("/", async (req, res) => {
-  try {
-    const { brand, model, loadCapacity } = req.body;
-    const newCar = await CarService.create(brand, model, loadCapacity);
-    res.status(201).json(newCar);
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({ message: err.message });
-  }
-});
-
-router.put("/:id", async (req, res) => {});
-
-router.delete("/:id", (req, res) => {});
+router.post('/', CarController.create)
+router.get('/', CarController.getAll)
+router.get('/:id', CarController.getOne)
+router.put('/', CarController.update)
+router.delete('/:id', CarController.delete)
 
 export default router;
