@@ -6,12 +6,19 @@ DELETE http://localhost:3000/cars/64391cac8289fa2abf0af4c1
 
 
 
-PUT http://localhost:3000/cars
+POST http://localhost:3000/clients
 Content-Type: application/json
 
 {
-  "_id": "64391cac8289fa2abf0af4c1",
-  "brand": "Audi", 
-  "model": "A9", 
-  "loadCapacity": "500"
+  "surname": "Lud",
+  "name": "Dmitry", 
+  "patronymic": "Alex", 
+  "phone": "+3754489084",
+  "email": "dima@gmail.com"
 }
+
+
+###
+
+
+GET http://localhost:3000/clients/643e423c84776306eafb774f
